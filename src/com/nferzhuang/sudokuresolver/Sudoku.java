@@ -51,7 +51,7 @@ public class Sudoku {
 		for (int i = 0; i < 9; i++) {
 			if (i % 3 == 0) {
 				if (i % 6 != 0)
-					System.out.print(index / 9 +1);
+					System.out.print(index / 9 + 1);
 				else
 					System.out.print("©¦");
 			}
@@ -200,5 +200,32 @@ public class Sudoku {
 			if (value != 0)
 				dataTips[i][value - 1] = 0;
 		}
+	}
+
+	public void updateDataFromTips() {
+		for (int i = 0; i < 81; i++) {
+			if (data[i] != 0)
+				continue;
+
+			int index = getIndex(dataTips[i]);
+			if (index != 0) {
+				System.out.println(i + ":updateDataFromTips, index:" + index);
+				data[i] = index;
+			}
+		}
+	}
+
+	private int getIndex(int tips[]) {
+		int index = 0;
+		for (int i = 0; i < 9; i++) {
+			if (tips[i] != 0) {
+				if (index != 0)
+					return 0;
+
+				index = tips[i];
+			}
+
+		}
+		return index;
 	}
 }

@@ -10,9 +10,11 @@ public class Main {
 				0, 0, 0, 6, 0, 3, 0, 4, 0, 5, 0, 0, 9, 0, 7, 0, 8, 0, 4, 0 };
 
 		sudoku.init(data);
+
 		sudoku.stepBox();
 		sudoku.stepRow();
 		sudoku.stepColumn();
+		sudoku.updateDataFromTips();
 		sudoku.output();
 	}
 

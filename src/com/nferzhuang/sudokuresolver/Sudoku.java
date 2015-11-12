@@ -8,11 +8,16 @@ public class Sudoku {
 		this.data = data;
 
 		for (int i = 0; i < 81; i++) {
-			for (int j = 0; j < 9; j++) {
-				dataTips[i][j] = j + 1;
+			int value = data[i];
+			if (value != 0) {
+				dataTips[i][value - 1] = value;
+			} else {
+				for (int j = 0; j < 9; j++) {
+					dataTips[i][j] = j + 1;
+				}
 			}
 		}
-	}	
+	}
 
 	public void output() {
 		outputData();
@@ -41,15 +46,16 @@ public class Sudoku {
 	}
 
 	private void outputBox(int index, int box[]) {
-		index += 1;
-		if (index > 10)
-			System.out.println("©°©¤©¤©¤©Ð©¤" + index + "©Ð©¤©¤©¤©´");
-		else
-			System.out.println("©°©¤©¤©¤©Ð©¤" + index + "©¤©Ð©¤©¤©¤©´");
+		System.out.println("©°©¤©¤©¤©Ð©¤" + (index % 9 + 1) + "©¤©Ð©¤©¤©¤©´");
 
 		for (int i = 0; i < 9; i++) {
-			if (i % 3 == 0)
-				System.out.print("©¦");
+			if (i % 3 == 0) {
+				if (i % 6 != 0)
+					System.out.print(index / 9 +1);
+				else
+					System.out.print("©¦");
+			}
+
 			int temp = box[i];
 			if (temp == 0)
 				System.out.print("   ");
@@ -67,7 +73,11 @@ public class Sudoku {
 	}
 
 	private void outputDataTips() {
-		for (int i = 0; i < 81; i++) {
+		int start = 0;
+		for (int i = start; i < start + 81; i++) {
+			if (data[i] != 0)
+				continue;
+
 			outputBox(i, dataTips[i]);
 		}
 	}
@@ -181,6 +191,9 @@ public class Sudoku {
 	}
 
 	private void updateDataTips(int i, int indexs[]) {
+		if (data[i] != 0)
+			return;
+
 		for (int j = 0; j < 9; j++) {
 			int index = indexs[j];
 			int value = data[index];

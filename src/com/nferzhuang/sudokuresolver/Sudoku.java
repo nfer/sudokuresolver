@@ -19,6 +19,16 @@ public class Sudoku {
 		}
 	}
 
+	public int count() {
+		int count = 0;
+		for (int i = 0; i < 81; i++) {
+			if (data[i] != 0) {
+				count++;
+			}
+		}
+		return count;
+	}
+
 	public void output() {
 		outputData();
 		outputDataTips();
@@ -72,7 +82,7 @@ public class Sudoku {
 		System.out.println("\n©¸©¤©¤©¤©Ø©¤©¤©¤©Ø©¤©¤©¤©¼");
 	}
 
-	private void outputDataTips() {
+	public void outputDataTips() {
 		int start = 0;
 		for (int i = start; i < start + 81; i++) {
 			if (data[i] != 0)
@@ -82,7 +92,7 @@ public class Sudoku {
 		}
 	}
 
-	private void outputData() {
+	public void outputData() {
 		System.out.println("©°©¤©¤©¤©¤©¤©¤©¤©Ð©¤©¤©¤©¤©¤©¤©¤©Ð©¤©¤©¤©¤©¤©¤©¤©´");
 
 		for (int i = 0; i < 81; i++) {
@@ -209,7 +219,6 @@ public class Sudoku {
 
 			int index = getIndex(dataTips[i]);
 			if (index != 0) {
-				System.out.println(i + ":updateDataFromTips, index:" + index);
 				data[i] = index;
 			}
 		}
